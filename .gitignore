@@ -1,0 +1,14 @@
+# Archivos binarios y de compilación
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Archivos de configuración de usuario
+*.user
+*.suo
+
+# Archivos generados por Visual Studio
+.vs/
+.vscode/
