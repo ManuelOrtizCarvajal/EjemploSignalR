@@ -1,0 +1,11 @@
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\bin\Debug\net8.0\BlazorTicTacToe.Shared.deps.json
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\bin\Debug\net8.0\BlazorTicTacToe.Shared.dll
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\bin\Debug\net8.0\BlazorTicTacToe.Shared.pdb
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.AssemblyInfoInputs.cache
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.AssemblyInfo.cs
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.csproj.CoreCompileInputs.cache
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.dll
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\refint\BlazorTicTacToe.Shared.dll
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\BlazorTicTacToe.Shared.pdb
+C:\proyectos\SignalR\BlazorTicTacToe.Shared\obj\Debug\net8.0\ref\BlazorTicTacToe.Shared.dll

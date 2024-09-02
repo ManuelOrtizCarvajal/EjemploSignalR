@@ -1,0 +1,79 @@
+﻿@page "/lobby"
+@using BlazorTicTacToe.Shared
+@rendermode InteractiveWebAssembly
+@inject NavigationManager NavigationManager
+
+<h1>Gato</h1>
+@if (currentRoom is null)
+{
+    <input @bind-value="@playerName" placeholder="Ingrese su nombre" />
+    <input @bind-value="@currentRoomName" placeholder="Nombre de sala" />
+    <button @onclick="CreateRoom">Crear sala</button>
+
+    <h3>Salas:</h3>
+    <ul>
+        @foreach (var room in rooms)
+        {
+            <li>@room.RoomName <button @onclick="() => JoinRoom(room.RoomId)">Unirse</button></li>
+        }
+    </ul>
+}
+else
+{
+    <CascadingValue Value="hubConnection">
+        <Sala CurrentRoom="currentRoom"></Sala>
+    </CascadingValue>
+}
+
+
+@code {
+    private HubConnection? hubConnection;
+    public bool isConnected => hubConnection?.State == HubConnectionState.Connected;
+    private string playerName = string.Empty;
+    private string currentRoomName = string.Empty;
+    private GameRoom? currentRoom;
+    private List<GameRoom> rooms = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Hubstart();
+    }
+
+    private async Task Hubstart()
+    {
+        hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("https://localhost:7261/chathub")).Build();
+        hubConnection.On<List<GameRoom>>("Rooms", (roomlist) =>
+        {
+            Console.WriteLine($"Tenemos {roomlist.Count} salas de juego");
+            rooms = roomlist;
+            InvokeAsync(StateHasChanged);            
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task CreateRoom()
+    {
+        if (!isConnected)
+            return;
+
+        currentRoom = await hubConnection.InvokeAsync<GameRoom>("CreateRoom", currentRoomName, playerName);
+    }
+
+    private async Task JoinRoom(string roomId)
+    {
+        if (!isConnected)
+            return;
+
+        var joinedRoom = await hubConnection.InvokeAsync<GameRoom>("JoinRoom", roomId, playerName);
+
+        if (joinedRoom != null)
+        {
+            currentRoom = joinedRoom;
+        }
+        else
+        {
+            Console.WriteLine("Sala llena o inexistente.");
+        }
+    }
+}
